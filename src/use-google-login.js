@@ -84,7 +84,7 @@ const useGoogleLogin = ({
         redirect_uri: redirectUri,
         scope,
         access_type: accessType,
-        response_type: 'token'
+        response_type: responseType
       }
 
       if (responseType === 'code') {
