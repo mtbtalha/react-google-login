@@ -53,20 +53,23 @@ const useGoogleLogin = ({
     if (loaded) {
       const GoogleAuth = window.gapi.auth2.getAuthInstance()
       const options = {
-        prompt
+        prompt,
+        response_type: responseType,
+        scope,
+        ux_mode: uxMode
       }
       onRequest()
-      if (responseType === 'code') {
-        GoogleAuth.grantOfflineAccess(options).then(
-          res => onSuccess(res),
-          err => onFailure(err)
-        )
-      } else {
-        GoogleAuth.signIn(options).then(
-          res => handleSigninSuccess(res),
-          err => onFailure(err)
-        )
-      }
+      // if (responseType === 'code') {
+      //   GoogleAuth.grantOfflineAccess(options).then(
+      //     res => onSuccess(res),
+      //     err => onFailure(err)
+      //   )
+      // } else {
+      // }
+      GoogleAuth.signIn(options).then(
+        res => handleSigninSuccess(res),
+        err => onFailure(err)
+      )
     }
   }
 
